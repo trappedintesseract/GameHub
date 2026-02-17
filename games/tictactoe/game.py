@@ -103,4 +103,7 @@ class TicTacToeGame(Game):
         return None
 
     def _is_draw(self, state: TicTacToeState) -> bool:
-        return all(cell != 0 for row in state.board for cell in row)
+        return (
+            all(cell != 0 for row in state.board for cell in row)
+            and self._winner(state) is None
+        )
