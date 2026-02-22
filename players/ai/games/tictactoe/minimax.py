@@ -27,37 +27,13 @@ _game = TicTacToeGame()
 # Bitboard-based terminal + evaluation
 # ---------------------------------------------------------------------------
 
+
 def is_terminal(state: TicTacToeState) -> bool:
-    """
-    Terminal detection using bitboards.
-    Must exactly match Game.is_terminal().
-    """
-    x_bits, o_bits = state_to_bitboards(state)
-    return bitboard_is_terminal(x_bits, o_bits)
+    return _game.is_terminal(state)
 
 
 def evaluate(state: TicTacToeState, root_player: PlayerID) -> float:
-    """
-    Perfect evaluation using bitboards.
-
-    Returns:
-        +1 → root_player win
-        -1 → root_player loss
-         0 → draw or non-terminal (depth cutoff)
-    """
-    x_bits, o_bits = state_to_bitboards(state)
-
-    winner = winner_from_bitboards(
-        x_bits,
-        o_bits,
-        _game.PLAYER_X,
-        _game.PLAYER_O,
-    )
-
-    if winner is None:
-        return 0.0
-
-    return 1.0 if winner == root_player else -1.0
+    return _game.result(state).get(root_player, 0.0)
 
 
 def next_states(state: TicTacToeState) -> Iterable[Tuple[Action, TicTacToeState]]:
@@ -79,6 +55,7 @@ def current_player(state: TicTacToeState) -> PlayerID:
 # ---------------------------------------------------------------------------
 # Player implementation
 # ---------------------------------------------------------------------------
+
 
 class MinimaxTicTacToePlayer(Player):
     """
