@@ -11,11 +11,6 @@ from core.types import Action, PlayerID
 from games.tictactoe.game import TicTacToeGame
 from games.tictactoe.state import TicTacToeState
 
-from analysis.representations.tictactoe import (
-    state_to_bitboards,
-    winner_from_bitboards,
-    is_terminal as bitboard_is_terminal,
-)
 
 from players.ai.core.search.minimax import minimax_decision
 
