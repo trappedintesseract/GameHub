@@ -15,7 +15,7 @@ from games.tictactoe.game import TicTacToeGame
 
 from players.ai.games.tictactoe.random import RandomTicTacToePlayer
 from players.ai.games.tictactoe.minimax import MinimaxTicTacToePlayer
-
+from players.ai.games.tictactoe.max_n import MaxnTicTacToePlayer
 from core.types import PlayerID
 from core.player import Player
 from typing import Dict
@@ -25,8 +25,8 @@ from typing import Dict
 
 NUM_GAMES = 50
 
-PLAYER_X_FACTORY = lambda: MinimaxTicTacToePlayer("X", depth=1)
-PLAYER_O_FACTORY = lambda: MinimaxTicTacToePlayer("O", depth=None)
+PLAYER_X_FACTORY = lambda: MinimaxTicTacToePlayer("X", depth=None)
+PLAYER_O_FACTORY = lambda: MaxnTicTacToePlayer("O", depth=None)
 
 
 # ---------------------------------------------------------------------------
